@@ -1,6 +1,7 @@
 export interface RegisterUserDto {
-  firstName: string;
-  lastName: string;
+  firstName: string | undefined;
+  lastName: string | undefined;
+  name: string | undefined;
   email: string;
   password: string;
 }

@@ -29,10 +29,14 @@ export class RegisterService {
       10
     );
 
-    const user = await User.create({
-      ...data,
+    const createdUser = await User.create({
+      firstName: data.firstName ?? "",
+      lastName: data.lastName ?? "",
+      email: data.email,
       password: hashedPassword,
     });
+
+    const user = createdUser as any;
 
     const accessToken = generateAccessToken({
       userId: user._id.toString(),

@@ -5,7 +5,7 @@ export const requirePermission =
   (...permissions: string[]) =>
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const userId = (req as any).user?.id;
+      const userId = (req as any).user?.userId;
 
       if (!userId) {
         return res.status(401).json({

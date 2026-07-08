@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 
 import { RegisterService } from "../services/register.service";
-
 import { registerSchema } from "../validators/register.validation";
 
 import {
@@ -9,12 +8,22 @@ import {
   errorResponse,
 } from "../../../shared/utils/apiResponse";
 
+import { RegisterUserDto } from "../types/auth.types";
+
 export const register = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   try {
-    const data = registerSchema.parse(req.body);
+    const parsed = registerSchema.parse(req.body);
+
+    const data: RegisterUserDto = {
+      firstName: parsed.firstName,
+      lastName: parsed.lastName,
+      name: parsed.name,
+      email: parsed.email,
+      password: parsed.password,
+    };
 
     const result =
       await RegisterService.register(data);

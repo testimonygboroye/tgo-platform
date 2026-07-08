@@ -1,22 +1,36 @@
 import { z } from "zod";
 
-export const registerSchema = z.object({
-  firstName: z
-    .string()
-    .min(2, "First name must be at least 2 characters")
-    .max(50),
+export const registerSchema = z
+  .object({
+    firstName: z.string().trim().optional(),
+    lastName: z.string().trim().optional(),
+    name: z.string().trim().optional(),
 
-  lastName: z
-    .string()
-    .min(2, "Last name must be at least 2 characters")
-    .max(50),
+    email: z.string().email(),
 
-  email: z
-    .email("Invalid email address")
-    .toLowerCase(),
+    password: z.string().min(8),
+  })
+  .transform((data) => {
+    if (data.firstName && data.lastName) {
+      return data;
+    }
 
-  password: z
-    .string()
-    .min(8, "Password must be at least 8 characters")
-    .max(100),
-});
+    if (data.name) {
+      const parts = data.name.trim().split(/\s+/);
+
+      return {
+        ...data,
+        firstName: parts[0],
+        lastName: parts.slice(1).join(" ") || "User",
+      };
+    }
+
+    return data;
+  })
+  .refine(
+    (data) => !!data.firstName && !!data.lastName,
+    {
+      message: "First name and last name are required.",
+      path: ["firstName"],
+    }
+  );
