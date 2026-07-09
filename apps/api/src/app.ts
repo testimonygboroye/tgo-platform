@@ -12,6 +12,14 @@ import rbacRoutes from "./modules/rbac/routes/rbac.routes";
 import { auditLogger } from "./modules/audit/middlewares/audit.middleware";
 import analyticsRoutes from "./modules/analytics/routes/analytics.routes";
 import { analyticsTracker } from "./modules/analytics/middlewares/analytics.middleware";
+import projectRoutes from "./modules/projects/routes/project.routes";
+import blogRoutes from "./modules/blog/routes/blog.routes";
+import skillRoutes from "./modules/skills/routes/skill.routes";
+import experienceRoutes from "./modules/experience/routes/experience.routes";
+import educationRoutes from "./modules/education/routes/education.routes";
+import certificateRoutes from "./modules/certificates/routes/certificate.routes";
+import testimonialRoutes from "./modules/testimonials/routes/testimonial.routes";
+import contactRoutes from "./modules/contact/routes/contact.routes";
 
 const app = express();
 
@@ -22,6 +30,46 @@ app.use(helmet());
 app.use(morgan("dev"));
 
 app.use(express.json());
+
+app.use(
+  "/api/v1/projects",
+  projectRoutes
+);
+
+app.use(
+  "/api/v1/blogs",
+  blogRoutes
+);
+
+app.use(
+  "/api/v1/skills",
+  skillRoutes
+);
+
+app.use(
+  "/api/v1/experience",
+  experienceRoutes
+);
+
+app.use(
+  "/api/v1/education",
+  educationRoutes
+);
+
+app.use(
+  "/api/v1/certificates",
+  certificateRoutes
+);
+
+app.use(
+  "/api/v1/testimonials",
+  testimonialRoutes
+);
+
+app.use(
+  "/api/v1/contact",
+  contactRoutes
+);
 
 app.use(analyticsTracker);
 
