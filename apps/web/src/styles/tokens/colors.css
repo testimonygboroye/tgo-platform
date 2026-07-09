@@ -1,0 +1,36 @@
+:root {
+  --color-primary: #6D28D9;
+  --color-primary-light: #885CF6;
+  --color-accent: #22D3EE;
+
+  --color-background: #050816;
+  --color-background-soft: #0B1020;
+  --color-surface: rgba(17, 24, 39, 0.75);
+  --color-surface-solid: #111827;
+
+  --color-text-primary: #F9FAFB;
+  --color-text-secondary: #D1D5DB;
+  --color-text-muted: #9CA3AF;
+
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-light: rgba(255, 255, 255, 0.18);
+
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+
+  --gradient-brand:
+    linear-gradient(
+      135deg,
+      #6D28D9,
+      #885CF6,
+      #22D3EE
+    );
+
+  --gradient-glow:
+    radial-gradient(
+      circle,
+      rgba(109, 40, 217, 0.35),
+      transparent 70%
+    );
+}
